@@ -2,10 +2,13 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Установить pnpm
+RUN npm install -g pnpm
+
 COPY . .
 
-RUN npm install --omit=dev
+RUN pnpm install --prod
 
 EXPOSE 5678
 
-CMD ["npx", "n8n"]
+CMD ["pnpm", "start"]
